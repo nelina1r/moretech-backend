@@ -40,12 +40,10 @@ public class AtmController {
     }
 
     @PostMapping("/atms/fillDatabase")
-    public ResponseEntity<?> fillDatabaseFromJson() {
-        try {
-            atmService.parseAndSaveAtms("atms.json");
-        } catch (IOException e) {
-            return new ResponseEntity<>("database was filled actually", HttpStatus.CONFLICT);
-        }
-        return new ResponseEntity<>("done", HttpStatus.OK);
+    public ResponseEntity<?> fillDatabaseFromJson() throws IOException {
+        if (atmService.parseAndSaveAtms("atms.json"))
+            return new ResponseEntity<>("done", HttpStatus.OK);
+        return new ResponseEntity<>("database was filled actually", HttpStatus.CONFLICT);
     }
 }
+

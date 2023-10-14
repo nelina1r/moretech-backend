@@ -11,9 +11,6 @@ import java.util.Optional;
 @Repository
 public interface OfficeRepository extends JpaRepository<Office, Long> {
 
-    @Query(value = "select count(o.id) from Office o")
-    Long countAll();
-
     Optional<Office> findById(Long id);
 
     List<Office> findAll();

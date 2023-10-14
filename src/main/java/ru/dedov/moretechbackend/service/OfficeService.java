@@ -2,6 +2,7 @@ package ru.dedov.moretechbackend.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -20,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Log
 public class OfficeService {
 
     private final ObjectMapper objectMapper;
@@ -45,9 +47,9 @@ public class OfficeService {
     }
 
     @Transactional
-    public void parseAndSaveOffices(String jsonFileName) throws IOException {
-        if (officeRepository.countAll().compareTo(0L) > 0)
-            throw new RuntimeException();
+    public boolean parseAndSaveOffices(String jsonFileName) throws IOException {
+        if (!officeRepository.findAll().isEmpty())
+            return false;
         //
         Resource resource = resourceLoader.getResource("classpath:" + jsonFileName);
         InputStream inputStream = resource.getInputStream();
@@ -63,5 +65,6 @@ public class OfficeService {
         }
 
         officeRepository.saveAll(offices);
+        return true;
     }
 }

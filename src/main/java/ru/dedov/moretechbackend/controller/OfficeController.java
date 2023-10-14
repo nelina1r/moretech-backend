@@ -40,12 +40,9 @@ public class OfficeController {
     }
 
     @PostMapping("/offices/fillDatabase")
-    public ResponseEntity<?> fillDatabaseFromJson() {
-        try {
-            officeService.parseAndSaveOffices("offices.json");
-        } catch (IOException e) {
-            return new ResponseEntity<>("database was filled actually", HttpStatus.CONFLICT);
-        }
-        return new ResponseEntity<>("done", HttpStatus.OK);
+    public ResponseEntity<?> fillDatabaseFromJson() throws IOException {
+        if (officeService.parseAndSaveOffices("atms.json"))
+            return new ResponseEntity<>("done", HttpStatus.OK);
+        return new ResponseEntity<>("database was filled actually", HttpStatus.CONFLICT);
     }
 }
