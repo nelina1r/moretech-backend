@@ -19,4 +19,3 @@ spring:
 2gis:
   api:
     url: "https://catalog.api.2gis.com/3.0/items"
-    key: "3ace0e09-9316-4ece-9861-08ea7c96e5b5"

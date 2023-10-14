@@ -21,9 +21,6 @@ public class ToPlaceDistanceCalculationServiceImpl implements ToPlaceDistanceCal
     @Value("${2gis.api.url}")
     private String apiUrl;
 
-    @Value("${2gis.api.key}")
-    private String apiKey;
-
     private final RestTemplate restTemplate;
 
     private final PlaceRepository placeRepository;
@@ -81,7 +78,7 @@ public class ToPlaceDistanceCalculationServiceImpl implements ToPlaceDistanceCal
                 (placesSearchRequestDto.getLon() != null ? "&lon=" + placesSearchRequestDto.getLon() : "") +
                 (placesSearchRequestDto.getLat() != null ? "&lat=" + placesSearchRequestDto.getLat() : "") +
                 (placesSearchRequestDto.getFields() != null ? "&fields=" + placesSearchRequestDto.getFields() : "") +
-                "&key=" + apiKey;
+                "&key=" ;
 
         log.info(url);
         return restTemplate.getForEntity(url, String.class);
