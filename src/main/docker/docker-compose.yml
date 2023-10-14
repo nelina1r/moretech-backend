@@ -1,0 +1,22 @@
+version: '1'
+
+services:
+  app:
+    image: 'moretech-backend:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/moretech-db
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_DB=moretech-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
