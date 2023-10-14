@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -12,17 +13,9 @@ import java.util.Map;
 @Table(name = "atm")
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Atm {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Atm extends Place{
 
     private String address;
-
-    private Double latitude;
-
-    private Double longitude;
 
     private Boolean allDay;
 
@@ -31,4 +24,7 @@ public class Atm {
     @Column(name="value")
     @CollectionTable(name="services", joinColumns=@JoinColumn(name="atm_id"))
     private Map<String, Service> services;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PlaceLoad> placeLoads;
 }

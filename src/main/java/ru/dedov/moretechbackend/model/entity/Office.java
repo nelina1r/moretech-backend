@@ -12,10 +12,7 @@ import java.util.List;
 @Table(name = "office")
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Office {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Office extends Place{
 
     private String salePointName;
 
@@ -33,10 +30,6 @@ public class Office {
 
     private String hasRamp;
 
-    private Double latitude;
-
-    private Double longitude;
-
     private String metroStation;
 
     private Integer distance;
@@ -50,4 +43,7 @@ public class Office {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OpenHour> openHoursIndividual;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PlaceLoad> placeLoads;
 }

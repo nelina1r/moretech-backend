@@ -20,6 +20,3 @@ spring:
   api:
     url: "https://catalog.api.2gis.com/3.0/items"
     key: "3ace0e09-9316-4ece-9861-08ea7c96e5b5"
-server:
-  address: 0.0.0.0
-  port: 80

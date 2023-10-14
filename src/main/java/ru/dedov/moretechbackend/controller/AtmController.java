@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dedov.moretechbackend.model.entity.Atm;
-import ru.dedov.moretechbackend.service.AtmService;
+import ru.dedov.moretechbackend.service.interfaces.AtmService;
 
 import java.io.IOException;
 import java.util.List;

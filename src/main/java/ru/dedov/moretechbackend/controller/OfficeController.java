@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dedov.moretechbackend.model.entity.Office;
-import ru.dedov.moretechbackend.service.OfficeService;
+import ru.dedov.moretechbackend.service.interfaces.OfficeService;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,7 +41,7 @@ public class OfficeController {
 
     @PostMapping("/offices/fillDatabase")
     public ResponseEntity<?> fillDatabaseFromJson() throws IOException {
-        if (officeService.parseAndSaveOffices("atms.json"))
+        if (officeService.parseAndSaveOffices("offices.json"))
             return new ResponseEntity<>("done", HttpStatus.OK);
         return new ResponseEntity<>("database was filled actually", HttpStatus.CONFLICT);
     }
