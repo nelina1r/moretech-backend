@@ -40,6 +40,9 @@ public class AtmService {
 
     @Transactional
     public void parseAndSaveAtms(String jsonFileName) throws IOException {
+        if (atmRepository.countAll().compareTo(0L) > 0)
+            throw new RuntimeException();
+        //
         Resource resource = resourceLoader.getResource("classpath:" + jsonFileName);
         List<Atm> atms = objectMapper.readValue(new File(resource.getURI()), new TypeReference<List<Atm>>() {});
 

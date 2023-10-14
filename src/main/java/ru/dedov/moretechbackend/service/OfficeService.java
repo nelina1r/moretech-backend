@@ -46,6 +46,9 @@ public class OfficeService {
 
     @Transactional
     public void parseAndSaveOffices(String jsonFileName) throws IOException {
+        if (officeRepository.countAll().compareTo(0L) > 0)
+            throw new RuntimeException();
+        //
         Resource resource = resourceLoader.getResource("classpath:" + jsonFileName);
         InputStream inputStream = resource.getInputStream();
         String json = new BufferedReader(new InputStreamReader(inputStream)).
