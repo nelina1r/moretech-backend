@@ -11,4 +11,6 @@ public class RestTemplateConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+    @Bean
+    public Ping Ping() {return new Ping();}
 }
